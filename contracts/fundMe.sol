@@ -9,22 +9,20 @@ contract fundMe {
     using priceConvertor for uint256;
 
     uint256 public constant minUsd = 5 * 1e18;
-    // 23515 gas - non-constant
-    // 21415 gas - constant
-
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
+    AggregatorV3Interface public priceFeed;
+
     address public immutable i_owner;
-    // 23644 gas - non-immutable
-    // 21508 gas - immutable
-    constructor(){
+    constructor(address priceFeedAddress){
         i_owner = msg.sender; 
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     function fund() public payable{
         // set minimum fund amount in USD
-        require(msg.value.getConversionRate() >= minUsd, "Didn't send enough");
+        require(msg.value.getConversionRate(priceFeed) >= minUsd, "Didn't send enough");
         // 1e18 = 1*10 ** 18 == value of wei for 1 eth
         // msg.value will have 18 decimal places
         funders.push(msg.sender);

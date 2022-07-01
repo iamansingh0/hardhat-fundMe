@@ -97,7 +97,20 @@ Done in 1.19s.
 ```
 
 ## Deploy Smart Contract Using Hardhat Deploy Package
-- Add [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy) package 
+1. Add [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy) package 
 ```
 yarn add --dev hardhat-deploy
 ```
+2. Import this on your **hardhat.config.js** file at the top of the file
+```js
+require("hardhat-deploy")
+```
+3. Create a new folder `deploy`, here we'll be writing our scripts
+4. Add `hardhat-deploy-ether` using command 
+```
+yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
+```
+
+### Write deploy scripts
+1. Create a new script file under **deploy** folder
+> for me it's `01-deploy-fund-me.js`
