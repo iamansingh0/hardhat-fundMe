@@ -65,13 +65,13 @@ After installing wsl, set username and password. Now open vscode and download an
 ### What does this contract do
 
 ## Setting up Hardhat
-1. Add hardhat 
+- Add hardhat 
 ```
 yarn add --dev hardhat
 ```
-2. Now run `yarn hardhat` and choose advance project
-3. say yes to all
-4. Go to `.prettierrc` and edit it like this(**optional**)
+- Now run `yarn hardhat` and choose advance project
+- say yes to all
+- Go to `.prettierrc` and edit it like this(**optional**)
 ```json
 {
     "tabWidth": 4,
@@ -79,4 +79,25 @@ yarn add --dev hardhat
     "semi": false,
     "singleQuote": false
 }
+```
+## Compile the Solidity Files
+
+1. First delete the `Greeter.sol` file from **contracts** directory and make a new solidity file and write your smart contract code there.
+> For me its fundMe.sol and priceConvertor.sol
+2. Match the solidity compiler in your solidity file with `hardhat.config.js` file, if they are different then update the compiler version in `hardhat.config.js` file.
+3. Adding [chainlink](https://docs.chain.link/) to out project.
+```
+yarn add --dev @chainlink/contracts
+```
+4. run `yarn hardhat compile`, and the solidity file must be compiled with the output: 
+```
+Downloading compiler 0.8.8
+Compiled 3 Solidity file successfully
+Done in 1.19s.
+```
+
+## Deploy Smart Contract Using Hardhat Deploy Package
+- Add [hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy) package 
+```
+yarn add --dev hardhat-deploy
 ```
