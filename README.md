@@ -1,7 +1,7 @@
 <div align="center">
   <a href="">
     <p align="center">
-      <img src="logo.png" alt="Logo" width="80" height="80">
+      <img src="logo_fundMe.png" alt="Logo" width="80" height="80">
     </p>
   </a>
   <h3 align="center"><strong>Compile and Deploy Smart Contract Using ethers.js</strong></h3>
