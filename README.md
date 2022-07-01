@@ -1,10 +1,10 @@
 <div align="center">
-  <a href="">
+  <a href="https://github.com/iamansingh0/hardhat-fundMe">
     <p align="center">
-      <img src="logo_fundMe.png" alt="Logo" width="80" height="80">
+      <img src="logo_fundMe.png" alt="Logo" width="90" height="90">
     </p>
   </a>
-  <h3 align="center"><strong>Compile and Deploy Smart Contract Using ethers.js</strong></h3>
+  <h3 align="center"><strong>Compile, Deploy, Publish and Test Smart Contract Using Hardhat</strong></h3>
   <hr>
 </div>
 <details>
@@ -37,7 +37,7 @@
 <hr>
 
 ## About the project
-It is a very basic project for web3 beginners on how to deploy their smart contract using javascript's [ethers.js](https://docs.ethers.io/v5/). In this project, there is a smart contract called **SimpleStorage.sol**. By using step by step process you can compile and deploy your smart contract to a local blockchain (``ganache``) and on a testnet(``rinkeby``).
+It is a very basic project for web3 beginners on how to deploy their smart contract using [Hardhat](https://hardhat.org/getting-started). In this project, there is a smart contract called **fundMe**. By using step by step process you can compile, deploy, publish and test your smart contract to a local network (``hardhat network``, `localhost`) and on a testnet(``rinkeby``).
 Let's get started! 
 
 ### Built With
