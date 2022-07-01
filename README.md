@@ -63,3 +63,20 @@ So first you need to install **wsl** in your environment. It lets you work on li
 After installing wsl, set username and password. Now open vscode and download an extension called **remote development**. Open command Palette and search *open in wsl window*. It will open vs code in wsl environment. Make a folder and get started!
 
 ### What does this contract do
+
+## Setting up Hardhat
+1. Add hardhat 
+```
+yarn add --dev hardhat
+```
+2. Now run `yarn hardhat` and choose advance project
+3. say yes to all
+4. Go to `.prettierrc` and edit it like this(**optional**)
+```json
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false
+}
+```
