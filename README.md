@@ -173,3 +173,43 @@ module.exports = {
 	}
 ```
 > So that's how we can use this getNamedAccounts and deployer account in our hardhat config file
+
+7. To deploy this contract we can do something like:
+```js
+const  fundMe = await  deploy("FundMe", {
+	from:  deployer,
+	args: [], //put constructor args here
+	log:  true,
+})
+```
+8. But to put address in the args, we can use of chainId. To do this, we'll make a new file in root directory -> `helper-hardhat-config.js`
+9.  Paste this code there:
+```js
+const  networkConfig = {
+	4: {
+		name:  "rinkeby",
+		ethUsdPriceFeed:  "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e"
+	},
+	137: {
+		name:  "polygon",
+		ethUsdPriceFeed:  "0xF9680D99D6C9589e2a93a78A04A279e509205945"
+	},
+	42: {
+		name:  "kovan",
+		ethUsdPriceFeed:  "0x9326BFA02ADD2366b30bacB125260Af641031331"
+	}
+//31337
+}
+module.exports = {
+	networkConfig,
+}
+``` 
+10. Add this at the top of your script file
+```js
+const { networkConfig } = require("../helper-hardhat-config")
+```
+Add this before using deploy function in script file:
+```js
+const  ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+```
+11. 
