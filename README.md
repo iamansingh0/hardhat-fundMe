@@ -63,6 +63,16 @@ So first you need to install **wsl** in your environment. It lets you work on li
 After installing wsl, set username and password. Now open vscode and download an extension called **remote development**. Open command Palette and search *open in wsl window*. It will open vs code in wsl environment. Make a folder and get started!
 
 ### What does this contract do
+---
+This smart contract is a simple fund collector smart contract, in this there are two functions 
+1. **`fund()`** : This function collects the funds when calling with  populated [`msg.value`](https://codeforgeek.com/send-ethereum-to-message-sender-solidity/). 
+It has a minimum Usd requirement value set. Anyone can run this function and fund this contract.
+2. **`withdraw()`** : Only owner of this contract can call this function and withdraw all the funds to its account. 
+3. **`funders`**: This is an array of address contains the address of all the funders who funded this contract.
+4. **`addressToAmountFunded[funder]`** : This is a mapping (address to uint256), in this the funders addresses are saved with the amounts they funded.
+5. **`constructor`** : Contructor takes one parameter, the address of chains to convert eth value to usd. [Learn More](https://docs.chain.link/docs/ethereum-addresses/)
+6. **`recieve()`** : This function is only executed when someone tries to send fund without using fund() function, this function will automatically direct thee user to fund() function.
+7. **`fallback()`** : This'll run in the normal condition.
 
 ## Setting up Hardhat
 - Add hardhat 
@@ -112,6 +122,7 @@ yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
 ```
 
 ### Write deploy scripts
+---
 1. Create a new script file under **deploy** folder
 > for me it's `01-deploy-fund-me.js`
 2. Basic format:
@@ -131,10 +142,12 @@ module.exports = async (hre){
 3. The 2nd line is called object destructuring in js, you can read about it here [more](https://www.javascripttutorial.net/es6/javascript-object-destructuring/)
 
 4. We are using this **deployments** objects to get two functions, thos two functions are **deploy** and **log** and we'll get **deployer** account from getNamedAccounts() function.
+5. And we'll grab our networks chainId.
 ```js
 module.exports = async ({ getNamedAccounts, deployments }) => {
 	const { deploy, log } = deployments
 	const { deployer } = await  getNamedAccounts()
+  const  chainId = network.config.chainId
 }
 ```
 5. getNamedAccounts(): We are pulling out **deployer** account from this function, this  function is basically used to name the different accounts availabe in a single network.
