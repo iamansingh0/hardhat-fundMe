@@ -37,7 +37,7 @@
 <hr>
 
 ## About the project
-It is a very basic project for web3 beginners on how to deploy their smart contract using [Hardhat](https://hardhat.org/getting-started). In this project, there is a smart contract called **fundMe**. By using step by step process you can compile, deploy, publish and test your smart contract to a local network (``hardhat network``, `localhost`) and on a testnet(``rinkeby``).
+It is a very basic project for web3 beginners on how to deploy their smart contract using [Hardhat](https://hardhat.org/getting-started). In this project, there is a smart contract called **fundMe**. By using step by step process I am compiling, deploying, publishing and testing my smart contract to a local network (``hardhat network``, `localhost`) and on a testnet(``rinkeby``).
 Let's get started! 
 
 ### Built With
