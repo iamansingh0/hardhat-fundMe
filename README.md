@@ -23,14 +23,13 @@
         <li><a href="#what-does-this-contract-do">What does this contract do</a></li>
       </ul>
     </li>
-    <li><a href="#steps-to-compile-the-smart-contract">Steps to Compile the Smart Contract</a></li>
-    <li><a href="#deploy-the-smart-contract">Deploy the Smart Contract</a></li>
-    <li><a href="#interact-with-simplestorage-smart-contract">Interact with SimpleStorage Smart Contract</a></li>
-    <li><a href="#deploying-it-in-remix-ide">Deploying it in remix IDE</a></li>
-    <li><a href="#to-read-or-write-the-contract-using-rinkeby-testnet">To Read or Write the contract using rinkeby testnet</a>
-      <ul>
-        <li><a href="#scan-qr-code">Scan QR Code</a></li>
-        <li><a href="#click-this-link">Click this link</a></li>
+    <li><a href="#setting-up-hardhat">Setting up Hardhat</a></li>
+    <li><a href="#compile-the-solidity-files">Compile the Solidity Files</a></li>
+    <li><a href="#deploy-smart-contract-using-hardhat-deploy-package">Deploy Smart Contract Using Hardhat Deploy Package</a>
+    	<ul>
+		<li><a href="#write-deploy-scripts">Write deploy scripts</a></li>
+        	<li><a href="#deploying-the-contract">Deploying the contract</a></li>
+	</ul>
     </li>
   </ol>
 </details>
