@@ -212,4 +212,27 @@ Add this before using deploy function in script file:
 ```js
 const  ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
 ```
-11. 
+11. What if we want to deploy it to a network which doesn't have this priceFeed address(like local networks), this is where [**mocking**](https://stackoverflow.com/questions/2665812/what-is-mocking#:~:text=To%20isolate%20the%20behavior%20of,the%20behavior%20of%20real%20objects.) comes into the picture.
+
+12. **`mocking`**: If the contract doesn't exist, we deploy a minimal version of it for our local testing. And deploying mocks is basically deploying scripts.
+
+13. In deploy folder, create a new file: `00-deploy-mocks.js`
+14. Inside contracts folder, create a new folder **test** and create a new file inside it: `Mock.sol`. This is where we are going to define mock priceFeed address.
+
+15. For our convenience, [**@chainlink/contracts**](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.6/tests/MockV3Aggregator.sol) comes with a predefined Mock for this purpose only. So in our **`Mock.sol`** file, we can import:
+```js
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0
+import  "@chainlink/contracts/src/v0.6/tests/MockV3Aggregator.sol"
+```
+16. While compiling, we'll get an error says:
+```error
+The Solidity version pragma statement in these files doesn't match any of the configured compilers in your config. Change the pragma or configure additional compiler versions in your hardhat config.
+```
+To resolve this error, we can add multiple compiler versions in out **hardhat.config.js** file:
+```js
+solidity: {
+	compilers: [{version:  "0.8.8"}, {version:  "0.6.6"}]
+},
+```
+17. Now run **yarn hardhat compile** and files will be compiled successully.
