@@ -114,3 +114,49 @@ yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
 ### Write deploy scripts
 1. Create a new script file under **deploy** folder
 > for me it's `01-deploy-fund-me.js`
+2. Basic format:
+```js
+module.exports = async ({ getNamedAccounts, deployments }) => { }
+```
+> We are getting two objects in parameter from [hre](https://hardhat.org/advanced/hardhat-runtime-environment)!
+- Here this syntax can be little confusing but what basically we are doing here is like this
+```js
+module.exports = async (hre){ 
+	{ getNamedAccounts, deployments } = hre // 2nd line
+	// above line is same as
+	// hre.getNamedAccounts
+	// hre.deployments
+}
+```
+3. The 2nd line is called object destructuring in js, you can read about it here [more](https://www.javascripttutorial.net/es6/javascript-object-destructuring/)
+
+4. We are using this **deployments** objects to get two functions, thos two functions are **deploy** and **log** and we'll get **deployer** account from getNamedAccounts() function.
+```js
+module.exports = async ({ getNamedAccounts, deployments }) => {
+	const { deploy, log } = deployments
+	const { deployer } = await  getNamedAccounts()
+}
+```
+5. getNamedAccounts(): We are pulling out **deployer** account from this function, this  function is basically used to name the different accounts availabe in a single network.
+See this example:
+```js
+module.exports = {
+	networks: {
+		rinkeby: {
+			url: RINKEBY_URL || "",
+			accounts: [private_key1, private_key2, private_key3...],
+		},
+	},
+	// so many accounts in a single network
+	// here we can use getNamedAccounts(), so what we'll do:
+	namedAccounts: {
+		deployer: {
+			default: 0, // the first account in the accounts list will be the default depployer
+			4: 1, // let's say in rinkeby we want it to have first position
+		},
+		user: {
+			default: 1, // for user purpose the default account will be second account in the list
+		},
+	}
+```
+> So that's how we can use this getNamedAccounts and deployer account in our hardhat config file

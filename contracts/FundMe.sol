@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.8;
+pragma solidity <=0.8.8;
 
-import "./priceConvertor.sol";
+import "./PriceConvertor.sol";
 
-contract fundMe {
+contract FundMe {
 
-    using priceConvertor for uint256;
+    using PriceConvertor for uint256;
 
     uint256 public constant minUsd = 5 * 1e18;
     address[] public funders;
