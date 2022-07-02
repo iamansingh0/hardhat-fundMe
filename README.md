@@ -236,3 +236,49 @@ solidity: {
 },
 ```
 17. Now run **yarn hardhat compile** and files will be compiled successully.
+
+### Deploying the contract
+---
+1. Now we have this **Mock.sol** compiled, let's write code to deploy it. We don't want it to be deployed when we are deploying our FundMe contracts on a network which has priceFeed.
+2. Edit **helper-hardhat-config.js**
+```js
+const  developmentChains = ["hardhat", "localhost"]
+const  DECIMALS = 8
+const  INITIAL_ANSWER = 200000000000
+module.exports = {
+	networkConfig,
+	developmentChains,
+}
+```
+import this **developmentChains** on **00-deploy-mock.js** script.
+```js
+const { developmentChains, DECIMALS, INITIAL_ANSWER } = require("../helper-hardhat-config")
+```
+3. **`00-deploy-mocks.js`** file:
+```js
+const { network } = require("hardhat")
+const { developmentChains, DECIMALS, INITIAL_ANSWER } = require("../helper-hardhat-config")
+module.exports = async ({ getNamedAccounts, deployments }) => {
+	const { deploy, log } = deployments
+	const { deployer } = await  getNamedAccounts()
+	const  chainId = network.config.chainId
+	if(chainId == "31337") {
+		log("Local network detected! Deploying mocks...")
+		await  deploy("Mock", {
+			contract:  Mock,
+			from:  deployer,
+			log:  true,
+			args: [DECIMALS, INITIAL_ANSWER]
+		})
+		log("Mocks deployed!")
+	}
+}
+module.exports.tags = ["all", "mocks"]
+```
+4. Run this command and only the mock script will be deployed!
+```shell
+yarn hardhat deploy --tags mocks
+```
+5. Check the **01-deploy-fund-me.js** file from the codes above.
+6. `yarn hardhat deploy` : deploying on hardhat local network. 
+yayyyyyyyyyyy!

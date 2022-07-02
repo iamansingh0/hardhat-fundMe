@@ -7,7 +7,7 @@ const { network } = require("hardhat")
 //     const { getNamedAccounts, deployments } = hre
 // }
 
-const { networkConfig } = require("../helper-hardhat-config")
+const { networkConfig, developmentChains } = require("../helper-hardhat-config")
 
 module.exports = async ({ getNamedAccounts, deployments }) => { 
     const { deploy, log } = deployments
@@ -15,10 +15,20 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     const chainId = network.config.chainId
 
-    const ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    let ethUsdPriceFeedAddress
+    if(developmentChains.includes(network.name)){ //local network
+        const ethUsdAggregator = await deployments.get("MockV3Aggregator") 
+        ethUsdPriceFeedAddress = ethUsdAggregator.address
+    } else {
+        ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    }
+
     const fundMe = await deploy("FundMe", {
         from: deployer,
-        args: [], //put constructor args here
+        args: [ethUsdPriceFeedAddress], //put constructor args here
         log: true,
     })
+    log("Contract Deployed!!")
 }
+
+module.exports.tags = ["all", "fundMe"]
