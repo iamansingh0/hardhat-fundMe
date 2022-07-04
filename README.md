@@ -377,10 +377,11 @@ waitConfirmations: network.config.blockConfirmations || 1,
 ```
 yarn hardhat deploy --network rinkeby
 ```
-
-## Link to smart contract
-- Whoa our smart contract just got deployed and published to rinkeby etherscan
 <p align="center">
 	<img src="deployed.PNG">
 </p>
+
+## Link to smart contract
+- Whoa our smart contract just got deployed and published to rinkeby etherscan
+
 Play with it using testnet: [Link](https://rinkeby.etherscan.io/address/0x6CB15C5123Ee5BABe8e11bfE28f67A4afDB72Ad6#code)
