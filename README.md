@@ -26,11 +26,17 @@
     <li><a href="#setting-up-hardhat">Setting up Hardhat</a></li>
     <li><a href="#compile-the-solidity-files">Compile the Solidity Files</a></li>
     <li><a href="#deploy-smart-contract-using-hardhat-deploy-package">Deploy Smart Contract Using Hardhat Deploy Package</a>
-    	<ul>
-		<li><a href="#write-deploy-scripts">Write deploy scripts</a></li>
-        	<li><a href="#deploying-the-contract">Deploying the contract</a></li>
-	</ul>
+		<ul>
+			<li><a href="#write-deploy-scripts">Write deploy scripts</a></li>
+			<li><a href="#deploying-the-contract">Deploying the contract</a></li>
+			<li><a href="verify-and-publishing-the-contract">Verify and Publishing the Contract</a>
+				<ul>
+					<li><a href="edit-hardhat.config.js-file">Edit hardhat.config.js file</a></li>
+				</ul>
+			</li>
+		</ul>
     </li>
+	<li><a href="link-to-smart-contract">Link to smart contract</a></li>
   </ol>
 </details>
 <hr>
