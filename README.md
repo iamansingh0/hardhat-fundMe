@@ -29,14 +29,14 @@
 		<ul>
 			<li><a href="#write-deploy-scripts">Write deploy scripts</a></li>
 			<li><a href="#deploying-the-contract">Deploying the contract</a></li>
-			<li><a href="verify-and-publishing-the-contract">Verify and Publishing the Contract</a>
+			<li><a href="#verify-and-publishing-the-contract">Verify and Publishing the Contract</a>
 				<ul>
-					<li><a href="edit-hardhat.config.js-file">Edit hardhat.config.js file</a></li>
+					<li><a href="#edit-hardhat.config.js-file">Edit hardhat.config.js file</a></li>
 				</ul>
 			</li>
 		</ul>
     </li>
-	<li><a href="link-to-smart-contract">Link to smart contract</a></li>
+	<li><a href="#link-to-smart-contract">Link to smart contract</a></li>
   </ol>
 </details>
 <hr>
