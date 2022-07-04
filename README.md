@@ -282,3 +282,99 @@ yarn hardhat deploy --tags mocks
 5. Check the **01-deploy-fund-me.js** file from the codes above.
 6. `yarn hardhat deploy` : deploying on hardhat local network. 
 yayyyyyyyyyyy!
+
+### Verify and Publishing the Contract
+---
+1. I created a new folder **utils** in root directory and under it, a file names `verify.js`.
+2. In verify.js put this code
+```js
+const { run } = require("hardhat")
+
+const verify = async (ContractAddress, args) => {
+    console.log("Verifying contract....")
+    try {
+        await run("verify:verify", {
+            address: ContractAddress,
+            constructorArguments: args,
+        })
+    } catch (e) {
+        if (e.message.toLowerCase().includes("already verified")) {
+            console.log("Already Verified")
+        } else {
+            console.log(e)
+        }
+    }
+}
+module.exports = { verify }
+```
+
+3. In deploy fund me script, pull out verify from verify.js using
+```js
+const { verify } = require("../utils/verify")
+```
+
+4. Add this in deploy function:
+```js
+if(!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY)
+    {
+        await verify(fundMe.address, [ethUsdPriceFeedAddress])
+    }
+```
+
+5. But first create a `.env` file and put your [ETHERSCAN_API](https://www.etherscan.io), [RINKEBY_URL](www.alchemy.com), [COINMAKERCAP_API](https://pro.coinmarketcap.com/account) and [PRIVATE_KEY](#) from your rinkeby account.
+```
+ETHERSCAN_API_KEY= <ETHERSCAN_API>
+RINKEBY_URL=https://eth-rinkeby.alchemyapi.io/v2/<YOUR-ALCHEMY-API>
+PRIVATE_KEY=<YOUR-PRIVATE-KEY>
+COINMARKETAPP_KEY=<YOUR-COINMAKERCAP-API>
+```
+
+##### Edit hardhat.config.js file
+1. First pull out all api and keys from **.env** file:
+```js
+const RINKEBY_RPC_URL = process.env.RINKEBY_URL || " "
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "key"
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "key"
+const COINMARKETAPP_KEY = process.env.COINMARKETAPP_KEY || "api"
+```
+
+2. Now edit module.exports:
+	1. Delete ropston network there and add rinkeby
+	```js
+	networks: {
+        rinkeby: {
+            url: RINKEBY_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            chainId: 4,
+            blockConfirmations: 6,
+        },
+    },
+	```
+	2. Edit gasReporter:
+	```js
+	gasReporter: {
+        enablesd: false,
+        outputFile: "gas-report.txt",
+        noColors: true,
+        currency: "USD",
+        coinmarketcap: COINMARKETAPP_KEY,
+    },
+	```
+
+	3. Edit Etherscan:
+	```js
+	etherscan: {
+        apiKey: ETHERSCAN_API_KEY,
+    },
+	```
+Done
+
+6. insert this line of code in your deploy script under the `log: true` of your `await deploy` thing:
+```js
+waitConfirmations: network.config.blockConfirmations || 1,
+```
+
+7. Run command 
+```
+yarn hardhat deploy --network rinkeby
+```
