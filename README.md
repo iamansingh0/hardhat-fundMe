@@ -281,7 +281,6 @@ yarn hardhat deploy --tags mocks
 5. Check the **01-deploy-fund-me.js** file from the codes above.
 6. `yarn hardhat deploy` : deploying on hardhat local network. 
 yayyyyyyyyyyy!
-<<<<<<< HEAD
 
 ### Verify and Publishing the Contract
 ---
@@ -378,5 +377,10 @@ waitConfirmations: network.config.blockConfirmations || 1,
 ```
 yarn hardhat deploy --network rinkeby
 ```
-=======
->>>>>>> 93a450fe29cd4dcb8c677798e436a27393590ee6
+
+## Link to smart contract
+- Whoa our smart contract just got deployed and published to rinkeby etherscan
+<p align="center">
+	<img src="deployed.PNG">
+</p>
+Play with it using testnet: [Link](https://rinkeby.etherscan.io/address/0x6CB15C5123Ee5BABe8e11bfE28f67A4afDB72Ad6#code)
