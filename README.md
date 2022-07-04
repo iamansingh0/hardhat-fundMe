@@ -378,7 +378,7 @@ waitConfirmations: network.config.blockConfirmations || 1,
 yarn hardhat deploy --network rinkeby
 ```
 <p align="center">
-	<img src="deployed.PNG">
+  <img src="deployed.png">
 </p>
 
 ## Link to smart contract
