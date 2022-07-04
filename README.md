@@ -31,7 +31,7 @@
 			<li><a href="#deploying-the-contract">Deploying the contract</a></li>
 			<li><a href="#verify-and-publishing-the-contract">Verify and Publishing the Contract</a>
 				<ul>
-					<li><a href="#edit-hardhat.config.js-file">Edit hardhat.config.js file</a></li>
+					<li><a href="#edit-hardhat-config-js-file">Edit hardhat config js file</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -334,7 +334,7 @@ PRIVATE_KEY=<YOUR-PRIVATE-KEY>
 COINMARKETAPP_KEY=<YOUR-COINMAKERCAP-API>
 ```
 
-##### Edit hardhat.config.js file
+##### Edit hardhat config js file
 1. First pull out all api and keys from **.env** file:
 ```js
 const RINKEBY_RPC_URL = process.env.RINKEBY_URL || " "
