@@ -32,11 +32,11 @@ module.exports = {
         },
     },
     gasReporter: {
-        enablesd: false,
+        enablesd: true,
         outputFile: "gas-report.txt",
         noColors: true,
         currency: "USD",
-        coinmarketcap: COINMARKETAPP_KEY,
+        // coinmarketcap: COINMARKETAPP_KEY,
     },
     etherscan: {
         apiKey: ETHERSCAN_API_KEY,
